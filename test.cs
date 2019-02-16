@@ -37,7 +37,7 @@ public class Test : MonoBehaviour
     void Start()
     {
          ServicePointManager.ServerCertificateValidationCallback = MyRemoteCertificateValidationCallback;
-        Debug.Log(Get("https://api.stackexchange.com/2.2/answers?order=desc&sort=activity&site=stackoverflow"));
+        Debug.Log(Get("https://api.yelp.com/v3/autocomplete?text=del&latitude=37.786882&longitude=-122.399972"));
         
     }
 
@@ -52,7 +52,7 @@ public class Test : MonoBehaviour
     {
         HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
         request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-
+        request.Headers.Add("Authorization", "Bearer " + "Bffayat-NTxYFEu8MGzUuRT-z4t2UdmHWgyAQYfffA92lbbnrt1fzBMMhuR7MFJ_jWj_iqx1orSDPrHQVHBojoDveBn0kTkFsGdCtW0Dnk0xa-XtUGjFyxIzEF1nXHYx");
         using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
         using (Stream stream = response.GetResponseStream())
         using (StreamReader reader = new StreamReader(stream))
@@ -61,23 +61,6 @@ public class Test : MonoBehaviour
         }
     }
 
-    private void GetContent()
-    {
-        string html = string.Empty;
-        string url = @"https://api.stackexchange.com/2.2/answers?order=desc&sort=activity&site=stackoverflow";
-        Debug.Log("!");
-
-        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-        request.AutomaticDecompression = DecompressionMethods.GZip;
-        Debug.Log("!!");
-        using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-        using (Stream stream = response.GetResponseStream())
-        using (StreamReader reader = new StreamReader(stream))
-        {
-            html = reader.ReadToEnd();
-        }
-        Debug.Log("oof");
-        Debug.Log(html);
-    }
+  
 
 }
