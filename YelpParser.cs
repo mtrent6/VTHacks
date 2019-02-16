@@ -4,8 +4,9 @@ using System.Net;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
+using Restaurant;
 
-public class YelpParser : MonoBehaviour
+public class YelpAPI : MonoBehaviour
 {
 
     public bool MyRemoteCertificateValidationCallback(System.Object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
@@ -37,7 +38,8 @@ public class YelpParser : MonoBehaviour
     void Start()
     {
         ServicePointManager.ServerCertificateValidationCallback = MyRemoteCertificateValidationCallback;
-        Debug.Log(Get("https://api.yelp.com/v3/businesses/search"));
+
+        Debug.Log(Get("https://api.yelp.com/v3/autocomplete?text=del&latitude=37.786882&longitude=-122.399972"));
 
     }
 
